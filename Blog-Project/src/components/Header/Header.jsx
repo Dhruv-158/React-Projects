@@ -24,7 +24,7 @@ function Header() {
         },
         {
             name: 'Signup',
-            slug: '/signin',
+            slug: '/signup',
             active: !authStatus,
         },
         {
