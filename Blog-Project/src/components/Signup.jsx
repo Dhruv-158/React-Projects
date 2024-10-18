@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React, {useState} from 'react'
-import authService from '../Store/authSlice.js'
+import authService from '../Appwrite/Auth.js'
 import {Link ,useNavigate} from 'react-router-dom'
 import {login} from '../Store/authSlice.js'
 import {Button, Input, Logo} from './index.js'

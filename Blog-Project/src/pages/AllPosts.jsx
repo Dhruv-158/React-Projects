@@ -1,16 +1,26 @@
 /* eslint-disable no-unused-vars */
-import React, { useState, useEffect } from 'react'
-import { Container, PostCard } from '../components'
-import service from '../appwrite/config'
+import React, { useState, useEffect } from 'react';
+import { Container, PostCard } from '../components';
+import service from '../appwrite/config';
 
 function AllPosts() {
-    const [posts, setPosts] = useState([])
-    useEffect(() => { }, [])
-    service.getPosts([]).then((posts) => {
-        if (posts) {
-            setPosts(posts.documents)
-        }
-    })
+    const [posts, setPosts] = useState([]);
+
+    useEffect(() => {
+        const fetchPosts = async () => {
+            try {
+                const response = await service.getPosts([]);
+                if (response && response.documents) {
+                    setPosts(response.documents);
+                }
+            } catch (error) {
+                console.error('Error fetching posts:', error);
+            }
+        };
+
+        fetchPosts();
+    }, []); // Run this effect once when the component mounts
+
     return (
         <div className='w-full py-8'>
             <Container>
@@ -23,7 +33,7 @@ function AllPosts() {
                 </div>
             </Container>
         </div>
-    )
+    );
 }
 
-export default AllPosts
+export default AllPosts;

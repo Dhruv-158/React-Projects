@@ -1,11 +1,13 @@
+/* eslint-disable no-unused-vars */
 import React from 'react'
 import { Container, PostForm } from '../components'
 
 function AddPost() {
+  console.log(PostForm())
   return (
     <div className='py-8'>
         <Container>
-            <PostForm />
+            <PostForm/>
         </Container>
     </div>
   )

@@ -28,13 +28,13 @@ function App() {
     <div className="min-h-screen flex flex-wrap content-between  bg-slate-700">
       <div className="w-full block">
         <Header/>
-        <main>
+        <main className=" h-screen">
           <Outlet/>
         </main>
         <Footer/>
       </div>
     </div>
-  ) : (null)
+  ) : null
 
 }
 

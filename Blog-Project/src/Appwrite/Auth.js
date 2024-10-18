@@ -6,9 +6,13 @@ export class AuthService {
     account;
 
     constructor() {
+        // Log URL and project ID for debugging
+        console.log("Appwrite URL:", conf.appwriteUrl);
+        console.log("Appwrite Project ID:", conf.appwriteProjectId);
+
         this.client
-            .setEndpoint(conf.appwriteUrl)
-            .setProject(conf.appwriteProjectId);
+            .setEndpoint(conf.appwriteUrl) // Ensure this is a valid URL
+            .setProject(conf.appwriteProjectId); // Ensure this is a valid project ID
         this.account = new Account(this.client);
     }
 
@@ -33,24 +37,24 @@ export class AuthService {
 
     async getCurrentUser() {
         try {
-            return await this.account.get()
+            const currentUser = await this.account.get();
+            return currentUser;
+        } catch (error) {
+            console.log("Appwrite Service :: getCurrentUser :: error", error.message || error);
+            return null;
         }
-        catch (error) {
-            console.log("Appwrite Serive :: getCurrentUser :: error", error);
-        }
-        return null;
     }
+    
 
     async logout() {
-
-        try{
-            await this.account.deleteSessions('all')
+        try {
+            await this.account.deleteSessions('all');
+        } catch (error) {
+            console.log("Appwrite Service :: logout :: error", error);
         }
-    catch(error) {
-        console.log("Appwrite Serive :: logout :: error", error)
     }
-}
 }
 
 const authService = new AuthService();
 export default authService;
+
